@@ -21,5 +21,4 @@ router.get('/:role', UserController.showUserByRole);
 //@router lấy tất cả người dùng
 router.get('/', UserController.showAll);
 
-
 module.exports = router;

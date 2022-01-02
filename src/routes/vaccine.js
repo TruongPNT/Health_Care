@@ -15,9 +15,7 @@ router.delete('/:id', VaccineRouter.destroy);
 //@router create
 router.post('/create', VaccineRouter.create);
 
-
 //@router lấy tất cả bệnh
 router.get('/', VaccineRouter.showAll);
-
 
 module.exports = router;

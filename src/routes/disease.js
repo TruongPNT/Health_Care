@@ -21,5 +21,4 @@ router.get('/:role', DiseaseController.showDiseaseByRole);
 //@router lấy tất cả bệnh
 router.get('/', DiseaseController.showAll);
 
-
 module.exports = router;
