@@ -1,7 +1,36 @@
 const Disease = require('../models/Disease');
+const Vaccine = require('../models/Vaccine')
 const { mongooseToObject } = require('../../util/mongoose');
 
 class DiseaseController {
+    
+    // [POST] /disease/createDiseaseVaccine
+    // thực hiện việc thêm mới bệnh vào data base
+    createDV(req, res, next) {
+        const formData = req.body;
+        const {vcName, vcFactory, vcDescription} = formData;
+        const {name, description, role} = formData;
+        const vaccine = new Vaccine({
+            name : vcName, 
+            factory: vcFactory, 
+            factory: vcDescription
+        });
+        vaccine.save();
+        const disease = new Disease({
+            name: name, 
+            description: description, 
+            role: role, 
+            id_vaccines : vaccine._id,
+        });
+        disease
+            .save()
+            .then(() => res.redirect('/disease'))
+            .catch(next);
+    }
+    
+    
+    
+    
     //[GET] getAllDisease
     // hiển thị tất cả các bệnh
     showAll(req, res, next) {

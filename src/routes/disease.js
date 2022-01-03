@@ -12,6 +12,9 @@ router.put('/:id', DiseaseController.update);
 //@router delete
 router.delete('/:id', DiseaseController.destroy);
 
+// TEST @router createDV
+router.post('/createDV', DiseaseController.createDV);
+
 //@router create
 router.post('/create', DiseaseController.create);
 
