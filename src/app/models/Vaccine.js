@@ -5,10 +5,10 @@ const Vaccine = new Schema(
     {
         name: { type: 'string', maxLength: 255, require: true },
         description: { type: 'string', maxLength: 255 },
-        factory: { type: 'string', maxLength: 255 },
+        injection_time: { type: 'string', maxLength: 255, require: true },
+        number_of_injections: { type: 'number' },
     },
     {
-        timestamps: true,
         collection: 'vaccine',
     },
 );

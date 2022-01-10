@@ -5,11 +5,12 @@ const Disease = new Schema(
     {
         name: { type: 'string', maxLength: 255, require: true },
         description: { type: 'string', maxLength: 600 },
-        role: { type: 'string', maxLength: 255 },
-        id_vaccines: { type: Schema.Types.ObjectId , ref:'vaccine' },
+        role: {
+            type: 'string',
+            enum: ['Bệnh trẻ em', 'Bệnh thai sản'],
+        },
     },
     {
-        timestamps: true,
         collection: 'disease',
     },
 );

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const Account = new Schema(
+const AccountStaff = new Schema(
     {
         username: {
             type: 'string',
@@ -13,17 +13,15 @@ const Account = new Schema(
             type: 'string',
             maxLength: 255,
             require: true,
-            unique: true,
         },
-        user_id: {
+        staff_id: {
             type: Schema.Types.ObjectId,
-            ref: 'users',
-        }
+            ref: 'health_facilities_staff',
+        },
     },
     {
-        timestamps: true,
-        collection: 'account',
+        collection: 'accountStaff',
     },
 );
 
-module.exports = mongoose.model('account', Account);
+module.exports = mongoose.model('accountStaff', AccountStaff);

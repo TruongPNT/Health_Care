@@ -1,21 +1,28 @@
-const User = require('../models/Users');
-const { mongooseToObject } = require('../../util/mongoose');
+const User = require('../models/User');
 
 class UserController {
     //[GET] /user/
     // hiển thị tất cả các người dùng
     showAll(req, res, next) {
         User.find({})
+            .populate('ward_id')
+            .populate('district_id')
+            .populate('city_id')
+            .populate('role_id')
             .then((users) => {
                 res.json(users);
             })
             .catch(next);
     }
 
-    //[Get] /user/:role
-    //hiển thị người dùng theo role
-    showUserByRole(req, res, next) {
-        User.find({ role: req.params.role })
+    //[Get] /user/:id
+    //hiển thị người dùng theo id
+    showUserById(req, res, next) {
+        User.find({ _id: req.params.id })
+            .populate('ward_id')
+            .populate('district_id')
+            .populate('city_id')
+            .populate('role_id')
             .then((users) => {
                 res.json(users);
             })
@@ -32,18 +39,8 @@ class UserController {
             .catch(next);
     }
 
-    // [GET] /user/:id/edit
-    // lấy thông tin người dùng cần sửa theo id và ném lên trang edit
-    edit(req, res, next) {
-        User.findById(req.params.id)
-            .then((users) => {
-                res.json(users);
-            })
-            .catch(next);
-    }
-
-    //[PUT] /user/:id
-    // sửa người dùng sau đó thành công thì quay lại trang hiển thị danh sách người dùng
+    // [PUT] /user/update
+    // thực hiện việc sửa thông tin người dùng
     update(req, res, next) {
         User.updateOne({ _id: req.params.id }, req.body)
             .then(() => res.redirect('/user'))

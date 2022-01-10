@@ -23,6 +23,16 @@ class VaccineController {
             .catch(next);
     }
 
+    // [GET] /disease/:id/
+    // lấy thông tin vaccine theo id
+    getVaccineById(req, res, next) {
+        Vaccine.findById(req.params.id)
+            .then((vaccines) => {
+                res.json(vaccines);
+            })
+            .catch(next);
+    }
+
     // [GET] /disease/:id/edit
     // lấy thông tin vaccine cần sửa theo id và ném lên trang edit
     edit(req, res, next) {

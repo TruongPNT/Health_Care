@@ -6,6 +6,10 @@ class Health_facilitiesController {
     // hiển thị tất cả các cơ sở y tế
     showAll(req, res, next) {
         HealthFac.find({})
+            .populate('ward_id')
+            .populate('district_id')
+            .populate('city_id')
+            .populate('role_id')
             .then((healthFac) => {
                 res.json(healthFac);
             })
@@ -13,9 +17,13 @@ class Health_facilitiesController {
     }
 
     //[Get] /healthFac/:role
-    //hiển thị bệnh theo role
-    showDiseaseByRole(req, res, next) {
+    //hiển thị cơ sở y tế theo role
+    showHealthFacByRole(req, res, next) {
         HealthFac.find({ role: req.params.role })
+            .populate('ward_id')
+            .populate('district_id')
+            .populate('city_id')
+            .populate('role_id')
             .then((healthFac) => {
                 res.json(healthFac);
             })
@@ -37,6 +45,10 @@ class Health_facilitiesController {
     // lấy thông tin cơ sở y tế cần sửa theo id và ném lên trang edit
     edit(req, res, next) {
         HealthFac.findById(req.params.id)
+            .populate('ward_id')
+            .populate('district_id')
+            .populate('city_id')
+            .populate('role_id')
             .then((healthFac) => {
                 res.json(healthFac);
             })

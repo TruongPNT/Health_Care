@@ -16,7 +16,7 @@ router.delete('/:id', HealthFacController.destroy);
 router.post('/create', HealthFacController.create);
 
 //@router cơ sở y tế theo role
-router.get('/:role', HealthFacController.showDiseaseByRole);
+router.get('/:role', HealthFacController.showHealthFacByRole);
 
 //@router lấy tất cả cơ sở ý tế
 router.get('/', HealthFacController.showAll);
